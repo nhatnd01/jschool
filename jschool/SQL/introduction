@@ -1,0 +1,124 @@
+Lesson01
+SELECT product_price
+FROM products;
+
+Lesson02
+SELECT product_name,
+       product_price
+FROM products;
+
+Lesson03
+SELECT *
+FROM orders;
+
+Lesson04
+SELECT product_price
+FROM products
+ORDER BY product_price;
+
+Lesson05
+SELECT product_id,
+       product_price,
+       product_name
+FROM products
+ORDER BY product_price,
+         product_id;
+
+Lesson06
+SELECT product_id,
+       product_price,
+       product_name
+FROM products
+ORDER BY product_price,
+         product_id DESC;
+
+Lesson07
+SELECT *
+FROM products
+WHERE product_price = 200;
+
+Lesson08
+SELECT *
+FROM products
+WHERE product_size = 'M';
+
+Lesson09
+SELECT *
+FROM products
+WHERE 200 >= product_price
+AND product_size = 'M';
+
+Lesson10
+SELECT *
+FROM products
+WHERE 100 >= product_price
+OR product_size = 'M';
+
+Lesson11
+SELECT *
+FROM products
+WHERE product_price IN (50, 100, 150);
+
+Lesson12
+SELECT *
+FROM products
+WHERE product_name LIKE '%（大）';
+
+Lesson13
+SELECT COUNT(*) AS count_items
+FROM products
+WHERE product_size = 'M';
+
+Lesson14
+SELECT MIN(order_price) AS min_order_price,
+       MAX(order_price) AS max_order_price
+FROM orders;
+
+Lesson15
+SELECT product_size,
+       COUNT(*) AS count_items
+FROM products
+GROUP BY product_size
+ORDER BY product_size;
+
+Lesson16
+SELECT order_no,
+       details.product_id,
+       product_name
+FROM details,
+     products
+WHERE details.product_id = products.product_id
+ORDER BY order_no,
+         details.product_id;
+
+Lesson17
+SELECT details.order_no,
+       details.product_id,
+       product_price,
+       order_count
+FROM details,
+     orders,
+     products
+WHERE details.order_no   = orders.order_no
+AND   details.product_id = products.product_id
+AND   user_id = 'user0001'
+ORDER BY details.order_no, details.product_id;
+
+Lesson18
+INSERT INTO details (order_no,
+                    product_id,
+                    order_count)
+VALUES (5,
+        'ID0002',
+        3);
+
+Lesson19
+UPDATE products
+SET product_size  = 'S',
+    product_price = 350
+WHERE product_id = 'ID0006';
+
+Lesson20
+DELETE FROM orders
+WHERE user_id = 'user0001';
+

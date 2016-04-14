@@ -1,0 +1,109 @@
+Lesson01
+SELECT *
+FROM products
+WHERE product_price = 100
+ORDER by product_name
+
+Lesson02
+SELECT *
+FROM products
+WHERE product_size = 'M'
+ORDER BY product_price DESC
+
+Lesson03
+SELECT *
+FROM products
+ORDER BY product_price DESC, product_id
+
+Lesson04
+SELECT *
+FROM products
+WHERE product_price <= 100 OR product_price >= 200
+
+Lesson05
+SELECT *
+FROM details
+WHERE product_id IN ('ID0001','ID0002','ID0006','ID0007')
+
+Lesson06
+SELECT *
+FROM products
+WHERE product_name LIKE 'みかん%'
+
+Lesson07
+SELECT *
+FROM products
+WHERE product_name LIKE '%ん%'
+
+Lesson08
+SELECT MIN(order_count) AS min_order_count,
+       MAX(order_count) AS max_order_count
+FROM details
+
+Lesson09
+SELECT user_id, COUNT(user_id) AS count_items
+FROM orders
+GROUP BY user_id
+ORDER BY user_id
+
+Lesson10
+SELECT order_no, COUNT(order_no) AS count_items
+FROM details
+GROUP BY order_no
+ORDER BY order_no
+
+Lesson11
+SELECT order_no, details.product_id, product_name, order_count
+FROM details, products
+WHERE details.product_id = products.product_id
+  AND details.product_id = 'ID0006'
+ORDER BY order_no DESC
+
+Lesson12
+SELECT details.product_id, product_size, order_no, order_count
+FROM details, products
+WHERE details.product_id = products.product_id
+AND product_size = 'M'
+ORDER BY details.product_id DESC, order_no
+
+Lesson13
+SELECT details.product_id, product_name, details.order_no, user_id
+FROM details, products, orders
+WHERE details.product_id = products.product_id
+AND   details.order_no = orders.order_no
+AND   details.product_id = 'ID0004'
+ORDER BY user_id DESC
+
+Lesson14
+SELECT details.order_no, product_name, product_price, order_count
+FROM details, products, orders
+WHERE details.product_id = products.product_id
+AND   details.order_no = orders.order_no
+AND   user_id = 'user0001'
+AND   product_size = 'M'
+ORDER BY product_price DESC
+
+Lesson15
+INSERT INTO details VALUES (4, 'ID0001', 4)
+
+Lesson16
+INSERT INTO products VALUES ('ID0008', 'なし', 'M', 300)
+
+Lesson17
+UPDATE orders
+SET order_no = 5,
+    user_id = 'user0005'
+WHERE order_no = 4
+
+Lesson18
+UPDATE details
+SET order_count = 5
+WHERE order_no = 2 AND product_id = 'ID0004'
+
+Lesson19
+DELETE FROM products
+WHERE product_price <= 100
+
+Lesson20
+DELETE FROM products
+WHERE product_size IN ('S','L')
